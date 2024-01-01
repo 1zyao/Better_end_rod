@@ -1,25 +1,24 @@
 package com.crystalneko.better_end_rod.Items;
 
 
+import com.crystalneko.better_end_rod.Better_end_rod;
 import com.crystalneko.better_end_rod.CreativeTab;
 import com.crystalneko.better_end_rod.datas;
 import com.crystalneko.better_end_rod.enchantment.oily;
-import com.crystalneko.better_end_rod.Better_end_rod;
+import com.crystalneko.better_end_rod.mca;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.*;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.TextComponentTranslation;
 
 import java.util.Random;
 
 public class normalRod extends Item {
-    private static String name = "normalrod";
+    private static String name = "normal_rod";
     public normalRod() {
         this.setRegistryName(name);
         this.setUnlocalizedName(Better_end_rod.MODID+"."+name);
@@ -47,6 +46,7 @@ public class normalRod extends Item {
                 if (datas.stick(player,stack,hand,target)) {
                     //插入成功
                     player.sendMessage(new TextComponentTranslation(I18n.format("message.better_end_rod.normal_rod.stick.success")));
+                    new mca(player, target);
                 } else {
                     stack.setItemDamage(stack.getItemDamage() - 1); //扣除耐久
                     if(stack.getItemDamage() == 0){ //故意留的特性
